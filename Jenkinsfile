@@ -9,11 +9,7 @@ pipeline {
             }
         }
 
-        stage('Run Docker container') {
-            steps {
-                sh 'docker run -d -p 5000:5000 --name flaskcont flask_app'
-            }
-        }
+
 
         stage('Docker Login') {
             steps {
