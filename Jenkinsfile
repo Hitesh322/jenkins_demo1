@@ -9,8 +9,6 @@ pipeline {
             }
         }
 
-
-
         stage('Docker Login') {
             steps {
                 withCredentials([usernamePassword(
@@ -29,21 +27,13 @@ pipeline {
                 sh 'docker push hit52/flask_app:latest'
             }
         }
-      stage('Deploy')  {
-         steps{
-             sh 'docker stop flaskcont || true'
-             sh 'docker rm flaskcont || true'
-             sh 'docker run -d -p 5000:5000 --name flaskcont hit52/flask_app:latest'
+
+        stage('Deploy') {
+            steps {
+                sh 'docker stop flaskcont || true'
+                sh 'docker rm flaskcont || true'
+                sh 'docker run -d -p 5000:5000 --name flaskcont hit52/flask_app:latest'
+            }
         }
-      
-      }
-
-}        
-
-
-
-
-
-
     }
 }
